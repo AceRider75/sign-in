@@ -1,27 +1,19 @@
-/* script.js */
-
-// Callback function to handle the credential response returned by Google
+// Callback function to handle the credential response
 function handleCredentialResponse(response) {
-  console.log("Encoded JWT ID token: " + response.credential);
-  // TODO: Send the token to your backend (e.g., via AJAX) for further verification and authentication.
+    console.log("Encoded JWT ID token: " + response.credential);
+
+    // Simulate verifying the token (you should verify it on your server)
+    const token = response.credential; // Normally sent to the backend for verification
+
+    // If verification is successful, show success screen
+    showSuccessScreen();
 }
 
-// Optional: Custom button approach
-window.onload = function() {
-  // Uncomment the following block if you'd like to use a custom button rather than
-  // the pre-built Google sign in button.
-  /*
-  google.accounts.id.initialize({
-    client_id: "654356654645-gb2381hmg5c7l0c5jvsk8bvhtouiad08.apps.googleusercontent.com",
-    callback: handleCredentialResponse
-  });
+// Function to display the success screen
+function showSuccessScreen() {
+    // Hide the sign-in container
+    document.getElementById("signin-container").classList.add("hidden");
 
-  // Display the custom button
-  document.getElementById("customBtn").style.display = "block";
-
-  // Add a click event listener to trigger the Google Sign-In prompt
-  document.getElementById("customBtn").addEventListener("click", function() {
-    google.accounts.id.prompt(); // Triggers the sign in prompt popup
-  });
-  */
-};
+    // Show the success container
+    document.getElementById("success-container").classList.remove("hidden");
+}
