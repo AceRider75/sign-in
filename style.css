@@ -97,7 +97,7 @@ body {
 }
 
 .custom-google-btn:hover {
-  background-color: gradient( #0d0d0d 0%, #121212 100%);
+  background-color: white;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
