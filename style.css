@@ -1,0 +1,49 @@
+/* style.css */
+
+/* Basic page styling */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f8f8f8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.signin-container {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 40px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.signin-container h2 {
+  margin-bottom: 20px;
+}
+
+/* Custom button styling (optional if using your own button) */
+#customBtn {
+  display: none; /* Hidden by default when using the pre-built button */
+  background-color: #fff;
+  color: #444;
+  width: 240px;
+  border-radius: 4px;
+  border: 1px solid lightgrey;
+  box-shadow: 1px 1px 1px grey;
+  white-space: nowrap;
+  cursor: pointer;
+  margin: 20px auto 0;
+}
+
+#customBtn:hover {
+  box-shadow: 1px 1px 3px grey;
+}
+
+#customBtn span {
+  padding: 10px 20px;
+  font-size: 16px;
+  vertical-align: middle;
+}
