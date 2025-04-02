@@ -1,91 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Allow the sign‑in popup to communicate with the main window -->
-    <meta http-equiv="Cross-Origin-Opener-Policy" content="same-origin-allow-popups" />
-    <title>Custom Google Sign In</title>
-    <!-- Link to External CSS -->
-    <link rel="stylesheet" href="style.css" />
-    <!-- Your Google Client ID -->
-    <meta name="google-signin-client_id" content="654356654645-gb2381hmg5c7l0c5jvsk8bvhtouiad08.apps.googleusercontent.com" />
-  </head>
-  <body>
-    <!-- Animated Neon/Dark Background -->
-    <div class="background-animation"></div>
-    
-    <!-- Glassmorphism Sign-In Card -->
-    <div id="signin-container" class="glass-card">
-      <h2>Sign in with Google</h2>
-      <!-- Custom Google Sign-In Button -->
-      <button id="custom-google-btn" class="custom-google-btn">
-        <!-- Google Icon SVG -->
-        <svg class="google-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="24px" height="24px">
-          <path fill="#EA4335" d="M24 9.5c3.9 0 6.7 1.7 8.2 3.1l5.9-5.9C34.6 3 29.8 1 24 1 14.7 1 6.7 6.3 2.5 13.1l6.9 5.4C11 12.1 17.7 9.5 24 9.5z"></path>
-          <path fill="#4285F4" d="M46.1 24.5c0-1.6-.1-3.1-.4-4.5H24v8.5h12.5c-.8 4.3-3.3 8-7.2 10.5l7 5.4C43.3 36 46.1 30.7 46.1 24.5z"></path>
-          <path fill="#FBBC05" d="M10.4 28.5c-1.1-3.2-1.1-6.8 0-10l-6.9-5.4C1.3 15.9 0 19.7 0 24c0 4.3 1.3 8.1 3.5 11.3l6.9-6.1z"></path>
-          <path fill="#34A853" d="M24 47c6.5 0 12-2.2 16-6v-6.4l-7.9-5.8c-2.2 1.5-5 2.4-8.1 2.4-6.3 0-11.7-4.3-13.6-10H2.5v6.4C6.7 41.7 14.7 47 24 47z"></path>
-          <path fill="none" d="M0 0h48v48H0z"></path>
-        </svg>
-        <span class="btn-text">Continue with Google</span>
-      </button>
-      <!-- Error Message Container -->
-      <p id="error-message" class="hidden error-message">Something went wrong! Please try again.</p>
-      <!-- Loading Indicator -->
-      <div id="loading-indicator" class="hidden loading-indicator">Signing in...</div>
-    </div>
-    
-    <!-- Glassmorphism Success Card (hidden initially) -->
-    <div id="success-container" class="glass-card hidden">
-      <h2>Sign In Successful!</h2>
-      <p>Welcome to the application.</p>
-    </div>
-    
-    <!-- Google Identity Services Library -->
-    <script src="https://accounts.google.com/gsi/client" async defer></script>
-    
-    <!-- Inline Script: Initialize Google Sign-In and attach events -->
-    <script>
-      // Initialize Google Identity Services once the window loads
-      window.onload = function() {
-        google.accounts.id.initialize({
-          client_id: "654356654645-gb2381hmg5c7l0c5jvsk8bvhtouiad08.apps.googleusercontent.com",
-          callback: handleCredentialResponse
-        });
-        
-        // Attach click event to the custom Google Sign-In button
-        document.getElementById("custom-google-btn").addEventListener("click", function () {
-          // Optionally, show a loading indicator while the prompt appears
-          document.getElementById("loading-indicator").classList.remove("hidden");
-          
-          google.accounts.id.prompt((notification) => {
-            // Hide the loading indicator when the prompt is complete
-            document.getElementById("loading-indicator").classList.add("hidden");
-            
-            // Optionally display an error message if the prompt does not show (user skipped/closed it)
-            if (notification.isNotDisplayed() || notification.isSkippedMoment()) {
-              document.getElementById("error-message").classList.remove("hidden");
-            } else {
-              document.getElementById("error-message").classList.add("hidden");
-            }
-          });
-        });
-      };
-
-      // Callback triggered after a successful sign-in
-      function handleCredentialResponse(response) {
-        console.log("Encoded JWT ID token: " + response.credential);
-        // Here, you might want to send the token to your server for verification
-        
-        showSuccessScreen();
-      }
-
-      // Function to display the success screen
-      function showSuccessScreen() {
-        document.getElementById("signin-container").classList.add("hidden");
-        document.getElementById("success-container").classList.remove("hidden");
-      }
-    </script>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <!-- Allow popups to communicate using relaxed COOP settings -->
+  <meta http-equiv="Cross-Origin-Opener-Policy" content="same-origin-allow-popups">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Custom Google Sign In</title>
+  <!-- Link to External CSS -->
+  <link rel="stylesheet" href="style.css">
+  <!-- Google Client ID -->
+  <meta name="google-signin-client_id" content="654356654645-gb2381hmg5c7l0c5jvsk8bvhtouiad08.apps.googleusercontent.com">
+</head>
+<body>
+  <!-- Animated background container -->
+  <div class="background-animation"></div>
+  
+  <!-- Sign-In Card with Glassmorphism effect -->
+  <div id="signin-container" class="glass-card">
+    <h2>Sign in with Google</h2>
+    <!-- Custom Google Sign-In Button -->
+    <button id="custom-google-btn" class="custom-google-btn">
+      <!-- Google Icon SVG -->
+      <svg class="google-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="24px" height="24px">
+        <path fill="#EA4335" d="M24 9.5c3.9 0 6.7 1.7 8.2 3.1l5.9-5.9C34.6 3 29.8 1 24 1 14.7 1 6.7 6.3 2.5 13.1l6.9 5.4C11 12.1 17.7 9.5 24 9.5z"></path>
+        <path fill="#4285F4" d="M46.1 24.5c0-1.6-.1-3.1-.4-4.5H24v8.5h12.5c-.8 4.3-3.3 8-7.2 10.5l7 5.4C43.3 36 46.1 30.7 46.1 24.5z"></path>
+        <path fill="#FBBC05" d="M10.4 28.5c-1.1-3.2-1.1-6.8 0-10l-6.9-5.4C1.3 15.9 0 19.7 0 24c0 4.3 1.3 8.1 3.5 11.3l6.9-6.1z"></path>
+        <path fill="#34A853" d="M24 47c6.5 0 12-2.2 16-6v-6.4l-7.9-5.8c-2.2 1.5-5 2.4-8.1 2.4-6.3 0-11.7-4.3-13.6-10H2.5v6.4C6.7 41.7 14.7 47 24 47z"></path>
+        <path fill="none" d="M0 0h48v48H0z"></path>
+      </svg>
+      <span class="btn-text">Continue with Google</span>
+    </button>
+  </div>
+  
+  <!-- Success Card; hidden initially -->
+  <div id="success-container" class="glass-card hidden">
+    <h2>Sign In Successful!</h2>
+    <p>Welcome to the application.</p>
+  </div>
+  
+  <!-- Load Google Identity Services Library -->
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <script>
+    // Initialize Google Identity Services on window load
+    window.onload = function() {
+      google.accounts.id.initialize({
+        client_id: "654356654645-gb2381hmg5c7l0c5jvsk8bvhtouiad08.apps.googleusercontent.com",
+        callback: handleCredentialResponse
+      });
+  
+      // Attach click event to the custom button to trigger the sign-in prompt
+      document.getElementById("custom-google-btn").addEventListener("click", function () {
+        google.accounts.id.prompt(); // Opens the sign-in popup
+      });
+    };
+  
+    // Callback invoked after a successful sign-in
+    function handleCredentialResponse(response) {
+      console.log("Encoded JWT ID token: " + response.credential);
+      // Optional: Send the token to your backend for verification.
+      showSuccessScreen();
+    }
+  
+    // Display success card and hide the sign-in card
+    function showSuccessScreen() {
+      document.getElementById("signin-container").classList.add("hidden");
+      document.getElementById("success-container").classList.remove("hidden");
+    }
+  </script>
+</body>
 </html>
