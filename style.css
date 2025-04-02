@@ -81,30 +81,28 @@ body {
 
 /* CUSTOM GOOGLE BUTTON STYLING */
 .custom-google-btn {
-  display: inline-flex;
-  align-items: center;
-  background-color: #4285F4;
-  border: none;
-  color: white;
-  padding: 0.8rem 1.2rem;
-  border-radius: 4px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
-  outline: none;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  margin-top: 1rem;
+    display: inline-flex;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: saddlebrown;
+    color: white;
+    padding: 0.8rem 1.2rem;
+    border-radius: 50px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    outline: none;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    margin-top: 1rem;
 }
 
 .custom-google-btn:hover {
-  background-color: #357ae8;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: white;
+    color: black;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-.custom-google-btn:active {
-  background-color: #3367D6;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
+
 
 /* Google Icon inside the button */
 .google-icon {
