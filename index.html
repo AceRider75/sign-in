@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Allow popup communication -->
+    <!-- Allow popups to communicate with the main window -->
     <meta http-equiv="Cross-Origin-Opener-Policy" content="same-origin-allow-popups" />
     <title>Custom Google Sign In</title>
     <!-- Link to External CSS -->
@@ -40,37 +40,41 @@
 
     <!-- Google Identity Services Library -->
     <script src="https://accounts.google.com/gsi/client" async defer></script>
-    <!-- Inline Script: Initialize Google Identity Services -->
     <script>
-      // When the window loads, initialize the Google Identity Services library
-      window.onload = function () {
-        // Check that the library has loaded before initializing
+      // Use a load event listener to ensure both the DOM and the GIS library are ready.
+      window.addEventListener('load', function() {
+        // Ensure the Google library has loaded
         if (window.google && google.accounts && google.accounts.id) {
+          // Initialize GIS with your client ID, callback, and explicitly set popup mode.
           google.accounts.id.initialize({
             client_id: "654356654645-gb2381hmg5c7l0c5jvsk8bvhtouiad08.apps.googleusercontent.com",
             callback: handleCredentialResponse,
             ux_mode: "popup"
           });
 
-          // Attach the click event to the custom button
-          document
-            .getElementById("custom-google-btn")
-            .addEventListener("click", function () {
-              google.accounts.id.prompt();
+          // Attach event handler to the custom sign-in button.
+          const customBtn = document.getElementById("custom-google-btn");
+          if (customBtn) {
+            customBtn.addEventListener("click", function() {
+              console.log("Custom Google button clicked; launching prompt.");
+              google.accounts.id.prompt(); // Opens the sign-in popup
             });
+          } else {
+            console.error("Custom Google sign-in button not found.");
+          }
         } else {
-          console.error("Google Identity Services library failed to load.");
+          console.error("Google Identity Services library did not load correctly.");
         }
-      };
+      });
 
-      // Callback function invoked after successful sign-in
+      // Callback function called when sign-in is successful.
       function handleCredentialResponse(response) {
         console.log("Encoded JWT ID token: " + response.credential);
-        // (Optional) Send the token to your backend for verification
+        // Optionally: Send response.credential to your backend server for verification.
         showSuccessScreen();
       }
 
-      // Switch to the success screen
+      // Swap the UI from the sign-in card to the success card.
       function showSuccessScreen() {
         document.getElementById("signin-container").classList.add("hidden");
         document.getElementById("success-container").classList.remove("hidden");
@@ -78,4 +82,3 @@
     </script>
   </body>
 </html>
-
