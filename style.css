@@ -101,10 +101,7 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-.custom-google-btn:active {
-  background-color: #3367D6;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
+
 
 /* Google Icon inside the button */
 .google-icon {
