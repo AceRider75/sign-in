@@ -3,16 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Google Authenticated Sign In Page</title>
-  <!-- Google Client ID meta tag -->
-  <meta name="google-signin-client_id" content="654356654645-gb2381hmg5c7l0c5jvsk8bvhtouiad08.apps.googleusercontent.com">
+  <title>Google Sign In</title>
   <link rel="stylesheet" href="style.css">
+  <!-- Google Client ID -->
+  <meta name="google-signin-client_id" content="654356654645-gb2381hmg5c7l0c5jvsk8bvhtouiad08.apps.googleusercontent.com">
 </head>
 <body>
-  <div class="signin-container">
+  <div id="signin-container">
     <h2>Sign in with Google</h2>
-
-    <!-- Google Identity Services pre-built sign in button -->
+    <!-- Google Sign-In Button -->
     <div id="g_id_onload"
          data-client_id="654356654645-gb2381hmg5c7l0c5jvsk8bvhtouiad08.apps.googleusercontent.com"
          data-context="signin"
@@ -27,14 +26,15 @@
          data-text="signin_with"
          data-size="large">
     </div>
-
-    <!-- Optional: Custom button approach (hidden by default) -->
-    <div id="customBtn">
-      <span>Login with Google</span>
-    </div>
   </div>
 
-  <!-- Load the Google Identity Services library -->
+  <!-- Success Screen -->
+  <div id="success-container" class="hidden">
+    <h2>Sign In Successful!</h2>
+    <p>Welcome to the application.</p>
+  </div>
+
+  <!-- Google Identity Services library -->
   <script src="https://accounts.google.com/gsi/client" async defer></script>
   <script src="script.js"></script>
 </body>
