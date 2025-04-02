@@ -2,9 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <!-- Adjust COOP to allow popups to communicate with the parent window -->
-  <meta http-equiv="Cross-Origin-Opener-Policy" content="same-origin-allow-popups">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cross-Origin-Opener-Policy" content="same-origin-allow-popups">
   <title>Google Sign In</title>
   <!-- Google Client ID -->
   <meta name="google-signin-client_id" content="654356654645-gb2381hmg5c7l0c5jvsk8bvhtouiad08.apps.googleusercontent.com">
@@ -12,46 +11,65 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Sign-In Screen -->
-  <div id="signin-container">
-    <h2>Sign in with Google</h2>
-    <!-- Google Identity Services setup -->
-    <div id="g_id_onload"
-         data-client_id="654356654645-gb2381hmg5c7l0c5jvsk8bvhtouiad08.apps.googleusercontent.com"
-         data-context="signin"
-         data-ux_mode="popup"
-         data-callback="handleCredentialResponse"
-         data-auto_prompt="false">
-    </div>
-    <div class="g_id_signin"
-         data-type="standard"
-         data-shape="rectangular"
-         data-theme="outline"
-         data-text="signin_with"
-         data-size="large">
-    </div>
+  <div class="container">
+    <!-- Header Section -->
+    <header class="header">
+      <h1>Welcome to Modern Sign-In</h1>
+      <p>Securely authenticate with Google</p>
+    </header>
+
+    <!-- Sign-In Section -->
+    <section id="signin-container" class="signin-section">
+      <h2>Sign in with Google</h2>
+      <!-- Google Identity Services setup -->
+      <div id="g_id_onload"
+           data-client_id="654356654645-gb2381hmg5c7l0c5jvsk8bvhtouiad08.apps.googleusercontent.com"
+           data-context="signin"
+           data-ux_mode="popup"
+           data-callback="handleCredentialResponse"
+           data-auto_prompt="false">
+      </div>
+      <div class="g_id_signin"
+           data-type="standard"
+           data-shape="rectangular"
+           data-theme="outline"
+           data-text="signin_with"
+           data-size="large">
+      </div>
+    </section>
+
+    <!-- Success Section -->
+    <section id="success-container" class="success-section hidden">
+      <h2>Sign In Successful!</h2>
+      <p>Welcome to the application.</p>
+      <button onclick="reloadPage()" class="btn">Go Back</button>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+      <p>&copy; 2025 Modern Sign-In. All rights reserved.</p>
+    </footer>
   </div>
 
-  <!-- Success Screen (hidden by default) -->
-  <div id="success-container" class="hidden">
-    <h2>Sign In Successful!</h2>
-    <p>Welcome to the application.</p>
-  </div>
-
-  <!-- Google Identity Services Library -->
+  <!-- Load the Google Identity Services Library -->
   <script src="https://accounts.google.com/gsi/client" async defer></script>
   <script>
-    // Callback function invoked after successful sign in.
+    // Callback function invoked after successful sign in
     function handleCredentialResponse(response) {
       console.log("Encoded JWT ID token: " + response.credential);
-      // You may want to verify the token with your backend here.
+      // Simulate token verification (backend logic needed here)
       showSuccessScreen();
     }
 
-    // Function to hide the sign-in container and display the success screen
+    // Function to hide the sign-in screen and display the success screen
     function showSuccessScreen() {
       document.getElementById("signin-container").classList.add("hidden");
       document.getElementById("success-container").classList.remove("hidden");
+    }
+
+    // Reload the page to go back to the sign-in screen
+    function reloadPage() {
+      location.reload();
     }
   </script>
 </body>
