@@ -2,16 +2,20 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <!-- Adjust COOP to allow popups to communicate with the parent window -->
+  <meta http-equiv="Cross-Origin-Opener-Policy" content="same-origin-allow-popups">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Google Sign In</title>
-  <link rel="stylesheet" href="style.css">
   <!-- Google Client ID -->
   <meta name="google-signin-client_id" content="654356654645-gb2381hmg5c7l0c5jvsk8bvhtouiad08.apps.googleusercontent.com">
+  <!-- Link to External CSS -->
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <!-- Sign-In Screen -->
   <div id="signin-container">
     <h2>Sign in with Google</h2>
-    <!-- Google Sign-In Button -->
+    <!-- Google Identity Services setup -->
     <div id="g_id_onload"
          data-client_id="654356654645-gb2381hmg5c7l0c5jvsk8bvhtouiad08.apps.googleusercontent.com"
          data-context="signin"
@@ -28,14 +32,27 @@
     </div>
   </div>
 
-  <!-- Success Screen -->
+  <!-- Success Screen (hidden by default) -->
   <div id="success-container" class="hidden">
     <h2>Sign In Successful!</h2>
     <p>Welcome to the application.</p>
   </div>
 
-  <!-- Google Identity Services library -->
+  <!-- Google Identity Services Library -->
   <script src="https://accounts.google.com/gsi/client" async defer></script>
-  <script src="script.js"></script>
+  <script>
+    // Callback function invoked after successful sign in.
+    function handleCredentialResponse(response) {
+      console.log("Encoded JWT ID token: " + response.credential);
+      // You may want to verify the token with your backend here.
+      showSuccessScreen();
+    }
+
+    // Function to hide the sign-in container and display the success screen
+    function showSuccessScreen() {
+      document.getElementById("signin-container").classList.add("hidden");
+      document.getElementById("success-container").classList.remove("hidden");
+    }
+  </script>
 </body>
 </html>
