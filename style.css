@@ -1,30 +1,30 @@
-/* GENERAL STYLES */
+/* GENERAL RESET AND FONT */
 html, body {
   margin: 0;
   padding: 0;
   height: 100%;
-  font-family: 'Arial', sans-serif;
+  width: 100%;
+  font-family: 'Roboto', sans-serif;
   overflow: hidden;
 }
 
-/* Neon/Dark Background with Animated Gradient */
+/* DARK NEON BACKGROUND WITH ANIMATED EFFECT */
 body {
-  background: #0f3460; /* Fallback */
+  background: #121212;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
 }
 
-/* Background Animation Container */
 .background-animation {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: radial-gradient(circle at center, #1a1a2e, #16213e, #0f3460);
-  z-index: -2;
+  z-index: -3;
+  background: radial-gradient(circle, #0d0d0d 0%, #121212 100%);
 }
 
 .background-animation::before {
@@ -34,24 +34,16 @@ body {
   left: -50%;
   width: 200%;
   height: 200%;
-  background: conic-gradient(
-    from 0deg,
-    #ff0080,
-    #ff0080,
-    #00f5d4,
-    #00f5d4,
-    #ff0080
-  );
-  filter: blur(150px);
-  animation: rotateBackgroundAnimation 20s linear infinite;
-  z-index: -1;
+  background: conic-gradient(from 0deg, #ff0080, #00f5d4, #ff0080);
+  filter: blur(100px);
+  animation: rotateBg 30s linear infinite;
 }
 
-@keyframes rotateBackgroundAnimation {
-  0% {
+@keyframes rotateBg {
+  from {
     transform: rotate(0deg);
   }
-  100% {
+  to {
     transform: rotate(360deg);
   }
 }
@@ -59,70 +51,75 @@ body {
 /* GLASSMORPHISM CARD EFFECT */
 .glass-card {
   position: relative;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 16px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  padding: 40px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 2rem;
   text-align: center;
-  color: #ffffff;
-  max-width: 400px;
-  width: 90%;
+  color: #fff;
+  width: 300px;
   z-index: 2;
 }
 
-/* Optional shimmering overlay effect */
-.glass-card::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(45deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.05) 40%, transparent 100%);
-  transform: translateX(-100%);
-  animation: slideIn 1.5s infinite;
-  border-radius: inherit;
-  pointer-events: none;
-  opacity: 0.3;
-}
-
-@keyframes slideIn {
-  0% {
-    transform: translateX(-100%);
-  }
-  100% {
-    transform: translateX(100%);
-  }
-}
-
-/* HEADINGS */
 .glass-card h2 {
-  font-size: 2em;
-  margin-bottom: 20px;
+  margin: 0 0 1rem 0;
+  font-size: 1.8rem;
 }
 
-/* PARAGRAPHS */
 .glass-card p {
-  font-size: 1.1em;
+  font-size: 1rem;
+  margin: 0.5rem 0;
 }
 
-/* HIDE ELEMENTS */
+/* Utility class to hide elements */
 .hidden {
   display: none;
 }
 
-/* Responsive Adjustments */
+/* CUSTOM GOOGLE BUTTON STYLING */
+.custom-google-btn {
+  display: inline-flex;
+  align-items: center;
+  background-color: #4285F4;
+  border: none;
+  color: white;
+  padding: 0.8rem 1.2rem;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  outline: none;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  margin-top: 1rem;
+}
+
+.custom-google-btn:hover {
+  background-color: #357ae8;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.custom-google-btn:active {
+  background-color: #3367D6;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Google Icon inside the button */
+.google-icon {
+  margin-right: 0.5rem;
+}
+
+/* Button text styling */
+.btn-text {
+  font-weight: 500;
+}
+
+/* RESPONSIVE ADJUSTMENTS */
 @media (max-width: 480px) {
   .glass-card {
-    padding: 20px;
-  }
-  .glass-card h2 {
-    font-size: 1.5em;
-  }
-  .glass-card p {
-    font-size: 1em;
+    width: 90%;
+    padding: 1.5rem;
   }
 }
